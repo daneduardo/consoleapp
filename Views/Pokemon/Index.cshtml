@@ -1,0 +1,83 @@
+@model ConsoleApp.Models.PokemonViewModel
+
+@{
+    ViewData["Title"] = "Pokémon Search";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Search for a Pokémon</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4">
+                <form asp-action="Index" method="post">
+                    <div class="mb-3">
+                        <label for="Name" class="form-label">Pokémon Name:</label>
+                        <input type="text" class="form-control" id="Name" name="Name" value="@Model?.Name" placeholder="e.g., Pikachu" required />
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+
+                <!-- Alert for invalid or not found Pokémon -->
+                @if (Model?.NotFound == true)
+                {
+                    <div class="alert alert-danger mt-4 text-center">
+                        Pokémon not found. Please try another name.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Show Pokémon Details -->
+    @if (Model != null && !string.IsNullOrEmpty(Model?.Name) && Model?.NotFound != true)
+    {
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-8">
+                <div class="card shadow p-4">
+                    <h3 class="card-title">@Model.Name</h3>
+                    <p><strong>Types:</strong> @string.Join(", ", Model.Types ?? new List<string>())</p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Strong Against</h5>
+                            @if (Model.StrongAgainst?.Any() == true)
+                            {
+                                <ul class="list-group list-group-flush">
+                                    @foreach (var type in Model.StrongAgainst)
+                                    {
+                                        <li class="list-group-item">@type</li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p class="text-muted">No strengths found.</p>
+                            }
+                        </div>
+
+                        <div class="col-md-6">
+                            <h5>Weak Against</h5>
+                            @if (Model.WeakAgainst?.Any() == true)
+                            {
+                                <ul class="list-group list-group-flush">
+                                    @foreach (var type in Model.WeakAgainst)
+                                    {
+                                        <li class="list-group-item">@type</li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p class="text-muted">No weaknesses found.</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,28 @@
+ConsoleApp/
+│
+├── Controllers/
+│   └── PokemonController.cs
+│
+├── Models/
+│   ├── DamageRelations.cs
+│   ├── Pokemon.cs
+│   ├── PokemonTypeDetail.cs
+│   ├── PokemonViewModel.cs
+│   ├── TypeInfoSimple.cs
+│
+├── Services/
+│   ├── IPokeApiService.cs
+│   └── PokeApiService.cs
+│
+├── Views/
+│   ├── Shared/
+│   │   └── _Layout.cshtml
+│   ├── Pokemon/
+│   │   └── Index.cshtml
+│
+├── wwwroot/
+│   └── (static assets like CSS/JS/images if needed)
+│
+├── Program.cs
+├── ConsoleApp.csproj
+└── README.md
