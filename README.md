@@ -23,7 +23,6 @@ This is a simple Pokédex app built with ASP.NET Core MVC that allows users to s
 
 ```bash
 git clone https://github.com/yourusername/ConsoleApp.git
-cd ConsoleApp
 dotnet restore
 dotnet run
 
